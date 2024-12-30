@@ -1,0 +1,42 @@
+{
+  "name": "raduga-next",
+  "version": "1.0.0",
+  "license": "ISC",
+  "author": "Homerion",
+  "description": "telegram: @homerion",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.0.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.1",
+    "@types/react": "19.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "8.17.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "^14.2.3",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-storybook": "^0.8.0",
+    "prettier": "^2.8.8",
+    "sass": "^1.83.0",
+    "sass-loader": "^16.0.4",
+    "typescript": "4.7.3"
+  }
+}

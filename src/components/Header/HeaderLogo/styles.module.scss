@@ -1,0 +1,32 @@
+.logo {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  > img {
+    width: 10rem;
+    height: 7rem;
+    object-fit: contain;
+  }
+
+  > span {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(.4rem);
+    font-size: 2rem;
+    line-height: 1.8rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .logo {
+    order: 2;
+
+    > span {
+      transform: translateY(.4rem);
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+  }
+}

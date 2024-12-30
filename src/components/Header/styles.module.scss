@@ -1,0 +1,26 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 1rem 0;
+  background-color: white;
+  box-shadow: 0 max(3px, .3rem) 1rem 0 rgba(0, 0, 0, 0.1);
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 48em) {
+  .header {
+    padding: 2rem 0;
+
+    > div {
+      flex-wrap: wrap;
+      gap: 2.6rem;
+    }
+  }
+}

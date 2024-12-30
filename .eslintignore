@@ -1,0 +1,15 @@
+node_modules/*
+.next/*
+*.json
+*/*.test.{js, jsx}
+*.md
+*.stories.js
+*.test.js
+jest.config.js
+**/__generated__/*
+sentry.*.config.ts
+.env.*
+/storybook-static
+.eslintcache
+/build
+/public
