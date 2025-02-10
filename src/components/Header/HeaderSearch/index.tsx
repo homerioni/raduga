@@ -1,17 +1,20 @@
 import SearchIcon from '../../../icons/SearchIcon';
-import styles from './styles.module.scss';
+import s from './styles.module.scss';
 
 const HeaderSearch = () => (
   <>
-    <form className={`${styles.searchForm} desktop`}>
-      <label className={styles.search}>
+    <form
+      className={`${s.searchForm} desktop`}
+      style={{ visibility: 'hidden' }}
+    >
+      <label className={s.search}>
         <input type="text" placeholder="Что хотите найти?" name="ra-search" />
       </label>
       <button type="submit">
         <SearchIcon />
       </button>
     </form>
-    <button className={`${styles.searchBtn} mobile`} type="button">
+    <button className={`${s.searchBtn} mobile`} type="button">
       <SearchIcon />
     </button>
   </>

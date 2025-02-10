@@ -1,8 +1,17 @@
 import React from 'react';
-import styles from './styles.module.scss';
+import s from './styles.module.scss';
 
-const CatalogBtn = () => (
-  <button className={styles.catalogBtn} type="button">
+type TCatalogBtnProps = {
+  onClick: () => void;
+  isOpenCatalog: boolean | string;
+};
+
+const CatalogBtn = ({ onClick, isOpenCatalog }: TCatalogBtnProps) => (
+  <button
+    className={`${s.catalogBtn} ${isOpenCatalog === true ? s.active : ''}`}
+    type="button"
+    onClick={onClick}
+  >
     <i />
     <span>Каталог</span>
   </button>

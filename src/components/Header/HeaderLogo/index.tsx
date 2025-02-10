@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './styles.module.scss';
+import s from './styles.module.scss';
 
 const HeaderLogo = () => (
-  <Link href="/" className={styles.logo}>
+  <Link href="/" className={s.logo}>
     <Image src="/img/logo.svg" alt="" width={100} height={70} />
     <span>
       <span>Книжный магазин</span>

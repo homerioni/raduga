@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 import Header from '../components/Header';
 import { vars } from '../constants';
-import './global.scss';
+import '../components/ui/font/stylesheet.css';
+import '../components/ui/global.scss';
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang="ru" style={vars}>

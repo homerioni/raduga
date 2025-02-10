@@ -1,70 +1,61 @@
-const Catalog = () => {
+'use client';
+
+import { useState } from 'react';
+import CatalogLink from './CatalogLink';
+import CatalogList from './CatalogList';
+import { menuItems } from './constants';
+import s from './styles.module.scss';
+
+type TCatalogProps = {
+  isOpenCatalog: boolean | string;
+};
+
+const Catalog = ({ isOpenCatalog }: TCatalogProps) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  if (!isOpenCatalog) {
+    return null;
+  }
+
   return (
-    <section className="catalog">
-      <nav className="container">
-        <ul className="catalog__menu">
-          <li className="catalog__menu-item">
-            <a href="#">Тестовый айтем</a>
-            <div className="catalog__content">
-              <button type="button" className="catalog__back-link mobile">
-                Тестовый айтем
-              </button>
-              <div className="catalog__list-box">
-                <a href="#" className="catalog__list-name">
-                  Наименование
-                </a>
-                <ul className="catalog__list">
-                  <li className="catalog__back-link mobile">Наименование</li>
-                  <li className="catalog__list-item">
-                    <a href="#">Первый элемент</a>
-                  </li>
-                  <li className="catalog__list-item">
-                    <a href="#">Второй элемент</a>
-                  </li>
-                  <li className="catalog__list-item">
-                    <a href="#">Третий элемент</a>
-                  </li>
-                  <li className="catalog__list-item">
-                    <a href="#">Четвертый элемент</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="catalog__list-box">
-                <a href="#" className="catalog__list-name">
-                  Наименование
-                </a>
-              </div>
-              <div className="catalog__list-box">
-                <a href="#" className="catalog__list-name">
-                  Наименование
-                </a>
-                <ul className="catalog__list">
-                  <li className="catalog__back-link mobile">Наименование</li>
-                  <li className="catalog__list-item">
-                    <a href="#">Первый элемент</a>
-                  </li>
-                  <li className="catalog__list-item">
-                    <a href="#">Второй элемент</a>
-                  </li>
-                  <li className="catalog__list-item">
-                    <a href="#">Третий элемент</a>
-                  </li>
-                  <li className="catalog__list-item">
-                    <a href="#">Четвертый элемент</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li className="catalog__menu-item">
-            <a href="#">Тестовый пункт</a>
-          </li>
-          <li className="catalog__menu-item">
-            <a href="#">Тест айтем</a>
-          </li>
+    <div className={`${s.main} ${isOpenCatalog === true ? s.active : ''}`}>
+      <nav className={`${s.container} container`}>
+        <ul className={s.menuList}>
+          {menuItems.map((item, index) => {
+            const hasItems = !!item.items.length;
+
+            return (
+              <li
+                key={index}
+                className={`${s.menuItem} ${
+                  activeIndex === index ? s.active : ''
+                } ${hasItems ? s.hasItems : ''}`}
+                onMouseEnter={() =>
+                  window.innerWidth >= 768 && hasItems && setActiveIndex(index)
+                }
+                onClick={() =>
+                  window.innerWidth < 768 && hasItems && setActiveIndex(index)
+                }
+              >
+                <CatalogLink
+                  link={item.href}
+                  title={item.title}
+                  className={s.menuItemLink}
+                  imageSrc={item.imgSrc}
+                  imageAlt={item.imgAlt}
+                />
+                {hasItems && activeIndex === index && (
+                  <CatalogList
+                    items={item.items}
+                    backAction={() => setActiveIndex(null)}
+                  />
+                )}
+              </li>
+            );
+          })}
         </ul>
       </nav>
-    </section>
+    </div>
   );
 };
 

@@ -76,6 +76,10 @@
       > span:before {
         content: none;
       }
+
+      &:nth-child(2) {
+        display: none;
+      }
     }
   }
 }

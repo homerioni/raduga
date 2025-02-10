@@ -1,0 +1,119 @@
+.catalog {
+  position: absolute;
+  left: 40rem;
+  top: 0;
+  width: calc(100% - 40rem);
+}
+
+.catalogList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 4rem;
+  padding: var(--pTop);
+}
+
+.catalogItem {
+  position: relative;
+  padding-left: 8rem;
+}
+
+.catalogItemImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+}
+
+.catalogItemLink {
+  margin-bottom: 1.4rem;
+  font-size: 2.8rem;
+  transition: color .15s ease;
+
+  &:hover {
+    color: var(--colorPurpleLight);
+  }
+
+  @media (min-width: 48.01em) {
+    > img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+    }
+  }
+}
+
+@media (max-width: 48em) {
+  @keyframes showAnimMob {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .catalog {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #f1f1f1;
+    animation: showAnimMob .2s ease-in-out;
+    transition: transform .2s ease-in-out;
+
+    &.closing {
+      transform: translateX(-100%);
+    }
+  }
+
+  .catalogList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .catalogItem {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    min-height: 12rem;
+    padding: 0 6rem 0 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+
+    &.hasItems:after {
+      content: '';
+      flex: none;
+      width: 2.4rem;
+      height: 2.4rem;
+      margin-left: auto;
+      border-top: 2px solid black;
+      border-right: 2px solid black;
+      border-radius: 0.4rem;
+      transform: rotate(45deg);
+    }
+
+    &:not(.hasItems) {
+      > .catalogItemLink {
+        width: 100%;
+      }
+    }
+  }
+
+  .catalogItemLink {
+    margin-bottom: 0;
+    padding: 2rem;
+    font-size: 3.2rem;
+  }
+}
