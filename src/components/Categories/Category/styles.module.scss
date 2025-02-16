@@ -1,0 +1,160 @@
+.main {
+  position: relative;
+  z-index: 1;
+  height: 32rem;
+
+  &:hover {
+    z-index: 2;
+  }
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  border: 1px solid #e7e7e7;
+  border-radius: .4rem;
+  overflow: hidden;
+  background-color: white;
+  transition: all .2s ease;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 32rem;
+    z-index: 1;
+    width: 30rem;
+    height: 1px;
+    opacity: 1;
+    box-shadow: 0 4rem 3rem 8rem rgba(255, 255, 255, 1);
+    transition: opacity .3s ease;
+  }
+
+  @media (min-width: 48.01em) {
+    &:hover {
+      height: auto;
+      width: calc(100% + 4rem);
+      padding: 4rem;
+      transform: translate(-2rem, -2rem);
+      box-shadow: 0 0 1.4rem 1rem var(--colorPurpleShadow);
+
+      &:before {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.img {
+  position: relative;
+  display: block;
+  width: calc(100% + 4rem);
+  aspect-ratio: 28 / 9;
+  margin: -2rem -2rem 2rem -2rem;
+  background-image: url("/img/img-bg.svg");
+  background-size: cover;
+
+  > img {
+    height: 100%;
+    object-fit: contain;
+    object-position: right;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: black;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  &:hover:before {
+    opacity: .1;
+  }
+}
+
+.name {
+  position: relative;
+  display: block;
+  width: fit-content;
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+  text-transform: uppercase;
+  transition: color .3s ease;
+
+  &:hover {
+    color: var(--colorPurpleLight);
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.listItem {
+  font-weight: 300;
+  font-size: 1.8rem;
+
+  > a {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 100%;
+      height: max(2px, .2rem);
+      transform: scaleX(0);
+      transform-origin: right;
+      background-color: var(--colorPurpleLight);
+      transition: transform .2s ease-in-out;
+    }
+
+    &:hover:before {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+  }
+}
+
+@media (max-width: 48em) {
+  .main {
+    height: auto;
+  }
+
+  .wrapper {
+    padding: 3rem;
+    border-radius: .6rem;
+
+    &:before {
+      content: none;
+    }
+  }
+
+  .img {
+    width: calc(100% + 6rem);
+    margin: -3rem -3rem 3rem -3rem;
+  }
+
+  .name {
+    margin-bottom: 2rem;
+    font-size: 4rem;
+  }
+
+  .list {
+    gap: 1rem;
+  }
+
+  .listItem {
+    font-size: 3rem;
+  }
+}

@@ -145,3 +145,11 @@ input[type="number"] {
     display: none;
   }
 }
+
+main > section:not(#map) {
+  padding: 4rem 0;
+}
+
+main > *:nth-child(even):not(#map) {
+  background-color: var(--colorPurpleShadow);
+}

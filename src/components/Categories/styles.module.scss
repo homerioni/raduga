@@ -1,0 +1,35 @@
+.main {
+  padding: 7rem 0 !important;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 32rem;
+  gap: 4rem;
+}
+
+@media (max-width: 48em) {
+  .main {
+    &:not(.open) .wrapper > *:nth-child(n + 4),
+    &.open .showBtn {
+      display: none;
+    }
+  }
+
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 4rem;
+  }
+
+  .showBtn {
+    display: block;
+    width: fit-content;
+    margin: 6rem auto 0 auto;
+    padding: 1rem 3rem;
+    border: 1px solid #9e9e9e;
+    border-radius: .6rem;
+    font-size: 3.2rem;
+  }
+}

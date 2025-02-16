@@ -1,0 +1,22 @@
+.title {
+  margin-bottom: 3rem;
+  font-size: 4rem;
+  text-align: center;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3rem;
+}
+
+@media (max-width: 48em) {
+  .title {
+    font-size: 5rem;
+  }
+
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
