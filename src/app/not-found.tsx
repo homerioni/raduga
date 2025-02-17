@@ -1,3 +1,5 @@
-const notFound = () => <h1>Not Found</h1>;
+import { redirect } from 'next/navigation';
 
-export default notFound;
+export default function notFound() {
+  redirect('/');
+}

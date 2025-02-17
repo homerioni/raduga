@@ -1,14 +1,12 @@
 import { Categories } from '../components/Categories';
-import { MyMap } from '../components/MyMap';
-import { ProductsPreview } from '../components/Products/ProductsPreview';
+import { ProductsPreview } from '../components/ProductsPreview';
 
-const MainPage = () => (
-  <>
-    <Categories />
-    <ProductsPreview />
-    <ProductsPreview />
-    <MyMap />
-  </>
-);
-
-export default MainPage;
+export default function MainPage() {
+  return (
+    <>
+      <Categories />
+      <ProductsPreview />
+      <ProductsPreview />
+    </>
+  );
+}

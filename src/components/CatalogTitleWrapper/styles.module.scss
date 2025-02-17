@@ -1,0 +1,43 @@
+.main {
+  margin-bottom: 3rem;
+}
+
+.title {
+  margin-bottom: 2.4rem;
+  font-size: 4.2rem;
+}
+
+.categories {
+  display: flex;
+  gap: 4rem;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.category {
+  flex: none;
+  font-size: 2.6rem;
+  transition: color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--colorPurple);
+    }
+  }
+}
+
+@media (max-width: 48em) {
+  .categories {
+    font-size: 5rem;
+  }
+
+  .category {
+    gap: 3rem;
+    width: calc(100% + 8rem);
+    margin-left: -4rem;
+    padding: 0 4rem;
+  }
+}
