@@ -1,13 +1,17 @@
 import Link from 'next/link';
+import InstagramIcon from '../../../icons/InstagramIcon';
 import MapIcon from '../../../icons/MapIcon';
-import PhoneIcon from '../../../icons/PhoneIcon';
 import s from './styles.module.scss';
 
 const HeaderContacts = () => (
   <div className={s.contacts}>
-    <Link href="tel:375291802283" className={`${s.phone} desktop`}>
-      <PhoneIcon />
-      <span>+375 (29) 180-22-83</span>
+    <Link
+      href="https://www.instagram.com/book_shop_rainbow/"
+      target="_blank"
+      className={`${s.phone} desktop`}
+    >
+      <InstagramIcon />
+      <span>@book_shop_rainbow</span>
     </Link>
     <Link href="#map" className={s.address}>
       <MapIcon />

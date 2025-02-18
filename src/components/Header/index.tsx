@@ -8,7 +8,7 @@ import HeaderLogo from './HeaderLogo';
 import HeaderSearch from './HeaderSearch';
 import s from './styles.module.scss';
 
-const Header = () => {
+export const Header = () => {
   const [isOpenCatalog, setIsOpenCatalog] = useState<boolean | string>(false);
 
   const toggleIsOpenCatalog = () => {
@@ -46,5 +46,3 @@ const Header = () => {
     </>
   );
 };
-
-export default Header;

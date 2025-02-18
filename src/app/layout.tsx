@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import Header from '../components/Header';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
 import { MyMap } from '../components/MyMap';
 import { vars } from '../constants';
 import '../components/ui/font/stylesheet.css';
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
           <MyMap />
         </main>
+        <Footer />
       </body>
     </html>
   );
