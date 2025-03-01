@@ -8,10 +8,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:push": "sudo prisma db push",
+    "prisma:studio": "sudo prisma studio",
+    "prisma:seed": "sudo prisma db seed",
+    "prisma:generate": "sudo prisma generate"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@prisma/client": "^6.4.0",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
     "next": "^15.0.4",
+    "prisma": "^6.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-yandex-maps": "^4.6.0"
@@ -39,6 +50,7 @@
     "prettier": "^2.8.8",
     "sass": "^1.83.0",
     "sass-loader": "^16.0.4",
-    "typescript": "4.7.3"
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
   }
 }

@@ -1,10 +1,15 @@
+import { Prisma } from '@prisma/client';
 import { Product } from '../Product';
 import s from './styles.module.scss';
 
-export const Products = () => (
+type TProductsProps = {
+  products: Prisma.ProductGroupByOutputType[];
+};
+
+export const Products = ({ products }: TProductsProps) => (
   <div className={s.main}>
-    {Array.from({ length: 20 }, (_, i) => (
-      <Product key={i} />
+    {products.map((product) => (
+      <Product key={product.id} {...product} />
     ))}
   </div>
 );

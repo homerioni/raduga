@@ -1,12 +1,12 @@
 import { Categories } from '../components/Categories';
 import { ProductsPreview } from '../components/ProductsPreview';
 
-export default function MainPage() {
+export default async function MainPage() {
   return (
     <>
       <Categories />
-      <ProductsPreview />
-      <ProductsPreview />
+      <ProductsPreview products={[]} />
+      <ProductsPreview products={[]} />
     </>
   );
 }

@@ -42,6 +42,7 @@ module.exports = {
       },
     ],
     'import/no-named-as-default': 'off',
+    'import/no-extraneous-dependencies': 'off',
     'no-restricted-exports': 'off',
     'react/state-in-constructor': 'off',
     'react/prop-types': 'off',
@@ -58,7 +59,7 @@ module.exports = {
     'max-len': [
       'error',
       {
-        code: 80,
+        code: 100,
         tabWidth: 2,
         ignorePattern: '^(im|ex)port .*',
         ignoreUrls: true,
