@@ -5,9 +5,10 @@ import s from './styles.module.scss';
 type TCatalogLinkProps = {
   link: string;
   title: string;
-  imageSrc?: string;
-  imageAlt?: string;
+  imageSrc?: string | null;
+  imageAlt?: string | null;
   className?: string;
+  onClick: () => void;
 };
 
 const CatalogLink = ({
@@ -16,15 +17,17 @@ const CatalogLink = ({
   imageSrc,
   imageAlt = '',
   className,
+  onClick,
 }: TCatalogLinkProps) => (
   <Link
     href={link}
     className={`${s.main} ${className ?? ''}`}
-    onClick={(e) => e.stopPropagation()}
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick();
+    }}
   >
-    {imageSrc && (
-      <Image src={imageSrc} alt={imageAlt} width={120} height={120} />
-    )}
+    {imageSrc && <Image src={imageSrc} alt={imageAlt ?? ''} width={120} height={120} />}
     <h3>{title}</h3>
   </Link>
 );

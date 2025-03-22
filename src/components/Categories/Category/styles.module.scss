@@ -34,6 +34,7 @@
 
   @media (min-width: 48.01em) {
     &:hover {
+      min-height: calc(100% + 4rem);
       height: auto;
       width: calc(100% + 4rem);
       padding: 4rem;

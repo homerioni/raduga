@@ -10,6 +10,7 @@ datasource db {
 
 enum UserRole {
   USER
+  EDITOR
   ADMIN
 }
 
@@ -29,6 +30,7 @@ model Category {
   id Int @id @default(autoincrement())
 
   name String @unique
+  linkName String @unique
   imageUrl String?
   products Product[]
 
@@ -46,9 +48,10 @@ model Product {
   name String
   description String?
   imageUrl String
-  price Int
-  discountPrice Int?
+  price Decimal @db.Decimal(6, 2)
+  fullPrice Decimal? @db.Decimal(6, 2)
   stock Boolean?
+  popular Boolean?
 
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int

@@ -1,15 +1,16 @@
-import { Prisma } from '@prisma/client';
-import { Product } from '../Product';
+import { Product as TProduct } from '@prisma/client';
+import { ProductItem } from '../ProductItem';
 import s from './styles.module.scss';
 
 type TProductsProps = {
-  products: Prisma.ProductGroupByOutputType[];
+  products: TProduct[];
 };
 
 export const Products = ({ products }: TProductsProps) => (
   <div className={s.main}>
+    {!products.length && <h3 className={s.empty}>Ничего не найдено</h3>}
     {products.map((product) => (
-      <Product key={product.id} {...product} />
+      <ProductItem key={product.id} {...product} />
     ))}
   </div>
 );

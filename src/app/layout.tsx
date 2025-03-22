@@ -6,7 +6,13 @@ import { vars } from '../constants';
 import '../components/ui/font/stylesheet.css';
 import '../components/ui/global.scss';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+  product,
+}: {
+  children: ReactNode;
+  product: ReactNode;
+}) {
   return (
     <html lang="ru" style={vars}>
       <body>
@@ -16,6 +22,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <MyMap />
         </main>
         <Footer />
+
+        {product}
       </body>
     </html>
   );

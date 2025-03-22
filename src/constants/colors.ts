@@ -6,7 +6,3 @@ export const colors = {
   PurpleBorder: '#8D70DC4C',
   PurpleShadow: '#7D64C319',
 } as const;
-
-export const colorVars = Object.fromEntries(
-  Object.entries(colors).map((item) => [`--color${item[0]}`, item[1]])
-);

@@ -1,19 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
+import { routes } from '../../constants/routes';
+import { getCategories } from '../../services/categories';
+import { TGetCategoriesResponse } from '../../types';
 import CatalogLink from './CatalogLink';
 import CatalogList from './CatalogList';
-import { menuItems } from './constants';
 import s from './styles.module.scss';
 
 type TCatalogProps = {
   isOpenCatalog: boolean | string;
+  catalogClose: () => void;
 };
 
-const Catalog = ({ isOpenCatalog }: TCatalogProps) => {
+export const Catalog = ({ isOpenCatalog, catalogClose }: TCatalogProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [categories, setCategories] = useState<TGetCategoriesResponse[]>([]);
 
-  if (!isOpenCatalog) {
+  useLayoutEffect(() => {
+    getCategories().then((res) => {
+      setCategories(res);
+    });
+  }, []);
+
+  if (!isOpenCatalog || !categories.length) {
     return null;
   }
 
@@ -21,32 +31,32 @@ const Catalog = ({ isOpenCatalog }: TCatalogProps) => {
     <div className={`${s.main} ${isOpenCatalog === true ? s.active : ''}`}>
       <nav className={`${s.container} container`}>
         <ul className={s.menuList}>
-          {menuItems.map((item, index) => {
-            const hasItems = !!item.items.length;
+          {categories.map((category) => {
+            const hasItems = !!category.children.length;
+            const link = `${routes.catalog}/${category.linkName}`;
 
             return (
               <li
-                key={index}
-                className={`${s.menuItem} ${
-                  activeIndex === index ? s.active : ''
-                } ${hasItems ? s.hasItems : ''}`}
-                onMouseEnter={() =>
-                  window.innerWidth >= 768 && hasItems && setActiveIndex(index)
-                }
-                onClick={() =>
-                  window.innerWidth < 768 && hasItems && setActiveIndex(index)
-                }
+                key={category.id}
+                className={`${s.menuItem} ${activeIndex === category.id ? s.active : ''} ${
+                  hasItems ? s.hasItems : ''
+                }`}
+                onMouseEnter={() => window.innerWidth >= 768 && setActiveIndex(category.id)}
+                onClick={() => window.innerWidth < 768 && setActiveIndex(category.id)}
               >
                 <CatalogLink
-                  link={item.href}
-                  title={item.title}
+                  link={link}
+                  title={category.name}
                   className={s.menuItemLink}
-                  imageSrc={item.imgSrc}
-                  imageAlt={item.imgAlt}
+                  imageSrc={category.imageUrl}
+                  imageAlt={category.imageUrl}
+                  onClick={catalogClose}
                 />
-                {hasItems && activeIndex === index && (
+                {hasItems && activeIndex === category.id && (
                   <CatalogList
-                    items={item.items}
+                    items={category.children}
+                    prevLink={link}
+                    catalogClose={catalogClose}
                     backAction={() => setActiveIndex(null)}
                   />
                 )}
@@ -58,5 +68,3 @@ const Catalog = ({ isOpenCatalog }: TCatalogProps) => {
     </div>
   );
 };
-
-export default Catalog;

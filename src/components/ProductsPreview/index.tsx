@@ -1,18 +1,19 @@
-import { Prisma } from '@prisma/client';
-import { Product } from '../Product';
+import { Product as TProduct } from '@prisma/client';
+import { ProductItem } from '../ProductItem';
 import s from './styles.module.scss';
 
 type TProductsPreviewProps = {
-  products: Prisma.ProductGroupByOutputType[];
+  title: string;
+  products: TProduct[];
 };
 
-export const ProductsPreview = ({ products }: TProductsPreviewProps) => (
+export const ProductsPreview = ({ products, title }: TProductsPreviewProps) => (
   <section>
     <div className="container">
-      <h2 className={s.title}>Популярные товары</h2>
+      <h2 className={s.title}>{title}</h2>
       <ul className={s.list}>
         {products.map((product) => (
-          <Product key={product.id} {...product} />
+          <ProductItem key={product.id} {...product} />
         ))}
       </ul>
     </div>

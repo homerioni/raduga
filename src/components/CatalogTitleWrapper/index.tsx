@@ -1,22 +1,26 @@
 import Link from 'next/link';
+import { TGetCategoriesResponse } from '../../types';
 import s from './styles.module.scss';
 
-export const CatalogTitleWrapper = () => (
+type TCatalogTitleWrapperProps = {
+  title: string;
+  pathName?: string;
+  subCategories?: TGetCategoriesResponse[];
+};
+
+export const CatalogTitleWrapper = ({
+  title,
+  pathName = '',
+  subCategories = [],
+}: TCatalogTitleWrapperProps) => (
   <div className={s.main}>
-    <h1 className={s.title}>Название категории</h1>
+    <h1 className={s.title}>{title}</h1>
     <div className={s.categories}>
-      <Link href="/" className={s.category}>
-        Подкатегория 1
-      </Link>
-      <Link href="/" className={s.category}>
-        Подкатегория 2
-      </Link>
-      <Link href="/" className={s.category}>
-        Подкатегория 3
-      </Link>
-      <Link href="/" className={s.category}>
-        Подкатегория 4
-      </Link>
+      {subCategories?.map((category) => (
+        <Link key={category.id} href={`${pathName}/${category.linkName}`} className={s.category}>
+          {category.name}
+        </Link>
+      ))}
     </div>
   </div>
 );

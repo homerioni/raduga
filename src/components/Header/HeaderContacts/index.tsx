@@ -3,7 +3,7 @@ import InstagramIcon from '../../../icons/InstagramIcon';
 import MapIcon from '../../../icons/MapIcon';
 import s from './styles.module.scss';
 
-const HeaderContacts = () => (
+export const HeaderContacts = () => (
   <div className={s.contacts}>
     <Link
       href="https://www.instagram.com/book_shop_rainbow/"
@@ -19,5 +19,3 @@ const HeaderContacts = () => (
     </Link>
   </div>
 );
-
-export default HeaderContacts;

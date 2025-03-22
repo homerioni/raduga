@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import s from './styles.module.scss';
 
-const HeaderLogo = () => (
+export const HeaderLogo = () => (
   <Link href="/" className={s.logo}>
     <Image src="/img/logo.svg" alt="" width={100} height={70} />
     <span>
@@ -11,5 +11,3 @@ const HeaderLogo = () => (
     </span>
   </Link>
 );
-
-export default HeaderLogo;

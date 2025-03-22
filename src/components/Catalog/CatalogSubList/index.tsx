@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { TGetCategoriesResponse } from '../../../types';
 import BackBtn from '../BackBtn';
 import CatalogLink from '../CatalogLink';
-import { TCatalogLink } from '../types';
 import s from './styles.module.scss';
 
 type TCatalogSubListProps = {
-  items: TCatalogLink[];
+  items: TGetCategoriesResponse[];
+  prevLink: string;
+  catalogClose: () => void;
   backAction: () => void;
 };
 
-const CatalogSubList = ({ items, backAction }: TCatalogSubListProps) => {
+const CatalogSubList = ({ items, prevLink, catalogClose, backAction }: TCatalogSubListProps) => {
   const [isClosing, setIsClosing] = useState(false);
 
   const onBack = () => {
@@ -21,12 +23,13 @@ const CatalogSubList = ({ items, backAction }: TCatalogSubListProps) => {
     <div className={`${s.subCatalog} ${isClosing ? s.closing : ''}`}>
       <BackBtn onClick={onBack} />
       <ul className={s.subCatalogList}>
-        {items.map((item, index) => (
+        {items.map((category, index) => (
           <li key={index} className={s.subCatalogItem}>
             <CatalogLink
               className={s.link}
-              link={item.href}
-              title={item.title}
+              link={`${prevLink}/${category.linkName}`}
+              title={category.name}
+              onClick={catalogClose}
             />
           </li>
         ))}

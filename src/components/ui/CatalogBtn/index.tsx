@@ -6,7 +6,7 @@ type TCatalogBtnProps = {
   isOpenCatalog: boolean | string;
 };
 
-const CatalogBtn = ({ onClick, isOpenCatalog }: TCatalogBtnProps) => (
+export const CatalogBtn = ({ onClick, isOpenCatalog }: TCatalogBtnProps) => (
   <button
     className={`${s.catalogBtn} ${isOpenCatalog === true ? s.active : ''}`}
     type="button"
@@ -16,5 +16,3 @@ const CatalogBtn = ({ onClick, isOpenCatalog }: TCatalogBtnProps) => (
     <span>Каталог</span>
   </button>
 );
-
-export default CatalogBtn;
