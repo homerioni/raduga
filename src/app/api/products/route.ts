@@ -46,6 +46,9 @@ export async function GET(req: NextRequest) {
 
   const products = await prisma.product.findMany({
     where,
+    include: {
+      category: true,
+    },
     orderBy: {
       updateAt: 'desc',
     },
@@ -57,4 +60,14 @@ export async function GET(req: NextRequest) {
   const totalPages = Math.ceil(totalCount / takeQty);
 
   return NextResponse.json({ products, totalCount, activePage, totalPages });
+}
+
+export async function DELETE(req: NextRequest) {
+  const idsParam = req.nextUrl.searchParams.get('ids');
+
+  const ids = idsParam ? idsParam.split(',').map(Number) : [];
+
+  const response = await prisma.product.deleteMany({ where: { id: { in: ids } } });
+
+  return NextResponse.json(response);
 }

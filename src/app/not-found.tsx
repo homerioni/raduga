@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
+import { routes } from '../constants';
 
 export default function notFound() {
-  redirect('/');
+  redirect(routes.main);
 }
