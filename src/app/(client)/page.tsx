@@ -3,7 +3,7 @@ import { Categories } from '../../components/client/Categories';
 import { ProductsPreview } from '../../components/client/ProductsPreview';
 import { getProducts } from '../../services';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function MainPage() {
   const { products: popularProducts } = await getProducts({ popular: true, qty: 10 });
