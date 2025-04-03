@@ -1,14 +1,6 @@
 import Head from 'next/head';
 import { Product } from '../../../../components/client/Product';
-import { getProduct, getProducts } from '../../../../services/products';
-
-export async function generateStaticParams() {
-  const { products } = await getProducts({ qty: 1000 });
-
-  return products.map((product) => ({
-    id: String(product.id),
-  }));
-}
+import { getProduct } from '../../../../services/products';
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
