@@ -9,10 +9,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:push": "sudo prisma db push",
-    "prisma:studio": "sudo prisma studio",
-    "prisma:seed": "sudo prisma db seed",
-    "prisma:generate": "sudo prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "prisma db seed",
+    "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },
   "prisma": {
