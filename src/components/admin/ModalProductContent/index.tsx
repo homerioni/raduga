@@ -124,10 +124,10 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
       }
     } else {
       setIsUploading(true);
-      const imageUrl = await uploadImage(imageData).finally(() => setIsUploading(false));
-      createProduct({ ...product, linkName, imageUrl: `/uploads/${imageUrl}` }).then(() =>
-        refetch()
-      );
+      const imageUrl = await uploadImage(imageData)
+        .then((res) => res.url)
+        .finally(() => setIsUploading(false));
+      createProduct({ ...product, linkName, imageUrl }).then(() => refetch());
     }
 
     modals.closeAll();
