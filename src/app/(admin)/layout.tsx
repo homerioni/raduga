@@ -2,9 +2,9 @@
 
 import Head from 'next/head';
 import { usePathname } from 'next/navigation';
+import { SessionProvider, signOut, useSession } from 'next-auth/react';
 import {
   AppShell,
-  Burger,
   Button,
   ColorSchemeScript,
   Flex,
@@ -14,13 +14,11 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import { ModalsProvider } from '@mantine/modals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AuthGuard } from '../../components/admin/AuthGuard/AuthGuard';
 import { adminRoutes } from '../../constants';
 import '@mantine/core/styles.css';
-import { SessionProvider, signOut, useSession } from 'next-auth/react';
-import { AuthGuard } from '../../components/admin/AuthGuard/AuthGuard';
 
 const queryClient = new QueryClient();
 
@@ -37,7 +35,7 @@ const LoginComponent = () => {
   }
 
   return (
-    <Flex align="center" gap={16}>
+    <Flex align="center" gap={16} justify="flex-end" ml="auto">
       <Text>{data?.user?.name}</Text>
       <Button onClick={() => signOut()}>Выйти</Button>
     </Flex>
@@ -45,7 +43,6 @@ const LoginComponent = () => {
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [opened, { toggle }] = useDisclosure();
   const pathname = usePathname();
 
   return (
@@ -59,18 +56,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <MantineProvider>
               <ModalsProvider>
                 <AppShell
-                  header={{ height: 50 }}
+                  header={{ height: 52 }}
                   navbar={{
                     width: 300,
                     breakpoint: 'sm',
-                    collapsed: { mobile: !opened },
+                    collapsed: { mobile: true },
                   }}
                   padding="md"
                 >
                   <AppShell.Header>
-                    <Flex align="center" justify="space-between" px={16}>
-                      <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                      <Title h={50} px={10} py={8} order={3}>
+                    <Flex align="center" justify="space-between" px={16} h="100%">
+                      <Title h={50} py={8} order={3} display={{ base: 'none', xs: 'block' }}>
                         ADMIN PANEL v0.1
                       </Title>
                       <LoginComponent />

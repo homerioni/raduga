@@ -3,4 +3,6 @@ import { routes } from '../constants';
 
 export default function notFound() {
   redirect(routes.main);
+
+  return <>Error</>;
 }

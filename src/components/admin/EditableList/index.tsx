@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Center, Checkbox, Table } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { Product } from '@prisma/client';
 import { IconCircleCheck, IconCircleX } from '@tabler/icons-react';
 import s from './styles.module.scss';
@@ -38,6 +39,8 @@ export const EditableList = ({
   columns,
   data,
 }: TEditableListProps) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   const onCheckbox = (e: ChangeEvent<HTMLInputElement>, item: Product) =>
     setSelectedItems((prev) =>
       e.target.checked ? [...prev, item] : prev.filter((product) => product.id !== item.id)
@@ -61,7 +64,7 @@ export const EditableList = ({
       highlightOnHover
       tabularNums
       stickyHeader
-      stickyHeaderOffset={110}
+      stickyHeaderOffset={isMobile ? 250 : 110}
       withRowBorders={false}
       className={s.table}
     >

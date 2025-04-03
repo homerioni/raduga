@@ -12,7 +12,8 @@
     "prisma:push": "sudo prisma db push",
     "prisma:studio": "sudo prisma studio",
     "prisma:seed": "sudo prisma db seed",
-    "prisma:generate": "sudo prisma generate"
+    "prisma:generate": "sudo prisma generate",
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

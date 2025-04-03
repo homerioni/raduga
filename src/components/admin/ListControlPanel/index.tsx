@@ -17,8 +17,13 @@ export const ListControlPanel = ({
   onEdit,
   onDel,
 }: TListControlPanelProps) => (
-  <Flex gap={10} style={{ position: 'sticky', top: 65, zIndex: 5 }}>
+  <Flex
+    gap={10}
+    direction={{ base: 'column', sm: 'row' }}
+    style={{ position: 'sticky', top: 65, zIndex: 5 }}
+  >
     <Button
+      flex="none"
       color="green"
       variant="light"
       onClick={onAdd}
@@ -27,6 +32,7 @@ export const ListControlPanel = ({
       Добавить
     </Button>
     <Button
+      flex="none"
       variant="light"
       onClick={onEdit}
       disabled={selectedLength !== 1}
@@ -35,6 +41,7 @@ export const ListControlPanel = ({
       Редактировать
     </Button>
     <Button
+      flex="none"
       variant="light"
       color="red"
       onClick={onDel}
@@ -44,9 +51,10 @@ export const ListControlPanel = ({
       Удалить
     </Button>
     <Input
+      flex="none"
       placeholder="Поиск"
       leftSection={<IconSearch size={20} />}
-      w={300}
+      w={{ base: '100%', sm: 300 }}
       radius={0}
       styles={{ input: { border: 'none', borderBottom: '1px solid var(--input-bd)' } }}
       value={search}

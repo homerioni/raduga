@@ -8,7 +8,7 @@ export default function ClientLayout({
   product,
 }: {
   children: React.ReactNode;
-  product: React.ReactNode;
+  product?: React.ReactNode;
 }) {
   return (
     <>

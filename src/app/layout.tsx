@@ -10,6 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" style={vars} {...mantineHtmlProps}>
+      <head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
       <body>{children}</body>
     </html>
   );

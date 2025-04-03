@@ -1,23 +1,29 @@
-import { signIn, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
+import { signIn, signOut, useSession } from 'next-auth/react';
+
+const emails = ['homerion13@gmail.com'];
 
 export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
-  const { status } = useSession();
+  const { status, data } = useSession();
+
+  const isAdmin = data?.user?.email && emails.includes(data?.user?.email);
 
   const isUnauthenticated = status === 'unauthenticated';
 
+  const isLoading = status === 'loading' || status === 'unauthenticated';
+
   useEffect(() => {
     if (isUnauthenticated) {
-      signIn();
+      signIn('google');
+    } else if (!isLoading && !isAdmin) {
+      signOut().then(() => signIn('google'));
     }
-  }, [isUnauthenticated]);
-
-  const isLoading = status === 'loading' || status === 'unauthenticated';
+  }, [isUnauthenticated, isAdmin, isLoading]);
 
   return (
     <>
       {isLoading && 'Загрузка...'}
-      {status === 'authenticated' && children}
+      {status === 'authenticated' && isAdmin && children}
     </>
   );
 };

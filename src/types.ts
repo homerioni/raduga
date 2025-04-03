@@ -6,3 +6,5 @@ export type TGetCategoriesResponse = Category & {
 };
 
 export type CreateProductData = Omit<Product, 'id' | 'createdAt' | 'updateAt'>;
+
+export type TProduct = Product & { category: Category };

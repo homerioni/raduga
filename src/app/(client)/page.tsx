@@ -1,3 +1,4 @@
+import { About } from '../../components/client/About';
 import { Categories } from '../../components/client/Categories';
 import { ProductsPreview } from '../../components/client/ProductsPreview';
 import { getProducts } from '../../services';
@@ -11,6 +12,7 @@ export default async function MainPage() {
       <Categories />
       <ProductsPreview title="Популярные товары" products={popularProducts} />
       <ProductsPreview title="Новинки" products={newProducts} />
+      <About />
     </>
   );
 }

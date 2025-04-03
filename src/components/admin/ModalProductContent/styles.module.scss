@@ -40,3 +40,18 @@
     border: none;
   }
 }
+
+@media (max-width: 768px) {
+  .imageUpload {
+    aspect-ratio: auto;
+    height: 10rem;
+
+    img {
+      width: auto;
+      height: 100%;
+      margin-right: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: inherit;
+    }
+  }
+}

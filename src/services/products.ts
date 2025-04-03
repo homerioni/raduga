@@ -1,6 +1,6 @@
-import { Category, Product } from '@prisma/client';
+import { Product } from '@prisma/client';
 import { apiRoutes } from '../constants';
-import { CreateProductData } from '../types';
+import { CreateProductData, TProduct } from '../types';
 import { axiosInstance } from './index';
 
 type TGetProductsProps = {
@@ -13,7 +13,7 @@ type TGetProductsProps = {
 };
 
 type TGetProductsResponse = {
-  products: (Product & { category: Category })[];
+  products: TProduct[];
   totalCount: number;
   activePage: number;
   totalPages: number;
@@ -25,8 +25,8 @@ export const getProducts = async (params?: TGetProductsProps) => {
   return data;
 };
 
-export const getProduct = async (id: number) => {
-  const { data } = await axiosInstance.get<Product>(apiRoutes.product, { params: { id } });
+export const getProduct = async (id: number | string) => {
+  const { data } = await axiosInstance.get<TProduct>(apiRoutes.product, { params: { id } });
 
   return data;
 };

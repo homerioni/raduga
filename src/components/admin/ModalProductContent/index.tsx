@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import Image from 'next/image';
 import {
   Button,
   Center,
@@ -16,14 +17,13 @@ import { modals } from '@mantine/modals';
 import { Product } from '@prisma/client';
 import { IconCheck, IconPhoto, IconQuestionMark, IconX } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
-import { slugify } from 'transliteration';
-import { getCategories } from '../../../../services/categories';
-import { createProduct, updateProduct } from '../../../../services/products';
-import s from './styles.module.scss';
-import { uploadImage } from '../../../../services/upload';
-import { getImagePreview } from '../../../../utils/getImagePreview';
-import Image from 'next/image';
 import imageCompression from 'browser-image-compression';
+import { slugify } from 'transliteration';
+import { getCategories } from '../../../services/categories';
+import { createProduct, updateProduct } from '../../../services/products';
+import { uploadImage } from '../../../services/upload';
+import { getImagePreview } from '../../../utils/getImagePreview';
+import s from './styles.module.scss';
 
 const stockInputs = [
   {
@@ -72,7 +72,10 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
           categoryId: data.categoryId,
           fullPrice: data.fullPrice,
         }
-      : {},
+      : {
+          fullPrice: null,
+          description: null,
+        },
   });
   const [preview, setPreview] = useState<string | null>(data?.imageUrl || null);
   const [isUploading, setIsUploading] = useState(false);
@@ -125,9 +128,6 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
       );
     }
 
-    {
-    }
-
     modals.closeAll();
   };
 
@@ -138,8 +138,8 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid gutter={10}>
-        <Grid.Col span={3}>
-          <Text fw={500} fz="sm" lh={1.7}>
+        <Grid.Col span={{ base: 12, sm: 3 }}>
+          <Text fw={500} fz="sm" lh={1.7} display="block">
             Изображение *
           </Text>
           <label className={`${s.imageUpload} ${preview ? s.active : ''}`}>
@@ -156,14 +156,14 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
             )}
           </label>
         </Grid.Col>
-        <Grid.Col span={9}>
+        <Grid.Col span={{ base: 12, sm: 9 }}>
           <Grid gutter={10}>
-            <Grid.Col span={6}>
+            <Grid.Col span={{ base: 12, sm: 6 }}>
               <Input.Wrapper label="Наименование" withAsterisk>
                 <Input placeholder="Имя товара" {...register('name', { required: true })} />
               </Input.Wrapper>
             </Grid.Col>
-            <Grid.Col span={6}>
+            <Grid.Col span={{ base: 12, sm: 6 }}>
               {categories && (
                 <Select
                   data={categories.map((item) => ({ value: String(item.id), label: item.name }))}
@@ -179,7 +179,7 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
                 />
               )}
             </Grid.Col>
-            <Grid.Col span={3}>
+            <Grid.Col span={{ base: 6, sm: 3 }}>
               <Input.Wrapper label="Цена" withAsterisk>
                 <Input
                   placeholder="Цена"
@@ -189,7 +189,7 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
                 />
               </Input.Wrapper>
             </Grid.Col>
-            <Grid.Col span={3}>
+            <Grid.Col span={{ base: 6, sm: 3 }}>
               <Input.Wrapper label="Цена без скидки">
                 <Input
                   placeholder="Без скидки"
@@ -199,9 +199,11 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
                 />
               </Input.Wrapper>
             </Grid.Col>
-            <Grid.Col span={3}>
+            <Grid.Col span={{ base: 6, sm: 3 }}>
               <Input.Wrapper label="Наличие">
                 <SegmentedControl
+                  display="flex"
+                  w="fit-content"
                   size="xs"
                   color={typeof stock === 'boolean' ? ['red', 'green'][+stock] : undefined}
                   data={stockInputs}
@@ -210,7 +212,7 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
                 />
               </Input.Wrapper>
             </Grid.Col>
-            <Grid.Col span={3}>
+            <Grid.Col span={{ base: 6, sm: 3 }}>
               <Input.Wrapper label="Популярный">
                 <Flex align="center" h={36}>
                   <Switch
