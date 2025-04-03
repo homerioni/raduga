@@ -108,7 +108,9 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
     if (data) {
       if (imageFile) {
         setIsUploading(true);
-        const imageUrl = await uploadImage(imageData).finally(() => setIsUploading(false));
+        const imageUrl = await uploadImage(imageData)
+          .then((res) => res.url)
+          .finally(() => setIsUploading(false));
         updateProduct({
           ...data,
           ...product,
