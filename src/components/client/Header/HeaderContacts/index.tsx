@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import InstagramIcon from '../../../icons/InstagramIcon';
-import MapIcon from '../../../icons/MapIcon';
+import { InstagramIcon, MapIcon } from '../../../icons';
 import s from './styles.module.scss';
 
 export const HeaderContacts = () => (

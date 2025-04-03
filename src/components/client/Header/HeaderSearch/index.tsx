@@ -3,7 +3,7 @@
 import { FormEvent, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { routes } from '../../../../constants';
-import SearchIcon from '../../../icons/SearchIcon';
+import { SearchIcon } from '../../../icons';
 import s from './styles.module.scss';
 
 export const HeaderSearch = () => {
