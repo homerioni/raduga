@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-const SearchIcon = () => (
+export const SearchIcon = () => (
   <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle
       cx="7.29432"
@@ -18,5 +18,3 @@ const SearchIcon = () => (
     />
   </svg>
 );
-
-export default SearchIcon;
