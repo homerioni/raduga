@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Catalog } from '../Catalog';
 import { CatalogBtn } from '../../ui/CatalogBtn';
+import { Catalog } from '../Catalog';
 import { HeaderContacts } from './HeaderContacts';
 import { HeaderLogo } from './HeaderLogo';
 import { HeaderSearch } from './HeaderSearch';

@@ -46,9 +46,7 @@ export const createProduct = async (product: CreateProductData) => {
 };
 
 export const updateProduct = async (product: Product) => {
-  const { createdAt, updateAt, ...updateData } = product;
-
-  const { data } = await axiosInstance.post(apiRoutes.updateProduct, updateData);
+  const { data } = await axiosInstance.post(apiRoutes.updateProduct, product);
 
   return data;
 };
