@@ -1,34 +1,22 @@
+import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { put } from '@vercel/blob';
 
 export async function POST(request: Request) {
   try {
-    // Создаем временную директорию для загрузок
-    const uploadDir = path.join(process.cwd(), 'public/uploads');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-
-    // Получаем данные формы
     const formData = await request.formData();
-    const file = formData.get('image') as File;
+    const imageFile = formData.get('image') as File;
 
-    if (!file) {
-      return NextResponse.json({ error: 'No image file provided' }, { status: 400 });
-    }
+    const blob = await put(imageFile.name, imageFile, {
+      access: 'public',
+    });
 
-    // Сохраняем файл
-    const buffer = await file.arrayBuffer();
-    const filename = `${Date.now()}-${file.name}`;
-    const filepath = path.join(uploadDir, filename);
+    revalidatePath('/');
 
-    await fs.promises.writeFile(filepath, Buffer.from(buffer));
-
-    return NextResponse.json(filename);
+    return NextResponse.json(blob);
   } catch (error) {
     console.error('Upload error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
 

@@ -113,7 +113,7 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
           ...data,
           ...product,
           linkName: `${linkName}-${data.id}`,
-          imageUrl: `/uploads/${imageUrl}`,
+          imageUrl,
         }).then(() => refetch());
       } else {
         updateProduct({ ...data, ...product, linkName: `${linkName}-${data.id}` }).then(() =>
