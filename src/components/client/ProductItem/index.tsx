@@ -23,7 +23,7 @@ export const ProductItem = ({
       <p className={`${s.stock} ${stockClassName}`}>{stockText}</p>
       <h2 className={s.title}>{name}</h2>
       <p className={s.price}>
-        {+price ? <span>{+price} руб</span> : <span>Цену уточняйте</span>}
+        {+price === 0 ? <span>Цену уточняйте</span> : <span>{+price} руб</span>}
         {fullPrice && <span>{+fullPrice} руб</span>}
       </p>
     </Link>
