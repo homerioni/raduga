@@ -14,7 +14,7 @@ import {
   Textarea,
 } from '@mantine/core';
 import { modals } from '@mantine/modals';
-import { Prisma, Product } from '@prisma/client';
+import { Product } from '@prisma/client';
 import { IconCheck, IconPhoto, IconQuestionMark, IconX } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
 import imageCompression from 'browser-image-compression';
@@ -24,7 +24,6 @@ import { createProduct, updateProduct } from '../../../services/products';
 import { uploadImage } from '../../../services/upload';
 import { getImagePreview } from '../../../utils/getImagePreview';
 import s from './styles.module.scss';
-import Decimal = Prisma.Decimal;
 
 const stockInputs = [
   {
