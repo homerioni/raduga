@@ -26,7 +26,7 @@ export const Product = ({ product }: TProductProps) => {
           <div className={s.priceBox}>
             <p className={`${s.stock} ${stockClassName}`}>{stockText}</p>
             <p className={s.price}>
-              <span>{+product.price} руб</span>
+              {+product.price ? <span>{+product.price} руб</span> : <span>Цену уточняйте</span>}
               {product.fullPrice && <span>{+product.fullPrice} руб</span>}
             </p>
           </div>

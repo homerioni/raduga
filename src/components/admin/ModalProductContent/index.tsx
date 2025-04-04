@@ -14,7 +14,7 @@ import {
   Textarea,
 } from '@mantine/core';
 import { modals } from '@mantine/modals';
-import { Product } from '@prisma/client';
+import { Prisma, Product } from '@prisma/client';
 import { IconCheck, IconPhoto, IconQuestionMark, IconX } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
 import imageCompression from 'browser-image-compression';
@@ -24,6 +24,7 @@ import { createProduct, updateProduct } from '../../../services/products';
 import { uploadImage } from '../../../services/upload';
 import { getImagePreview } from '../../../utils/getImagePreview';
 import s from './styles.module.scss';
+import Decimal = Prisma.Decimal;
 
 const stockInputs = [
   {
@@ -114,20 +115,26 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
         updateProduct({
           ...data,
           ...product,
+          price: product.price ?? 0,
           linkName: `${linkName}-${data.id}`,
           imageUrl,
         }).then(() => refetch());
       } else {
-        updateProduct({ ...data, ...product, linkName: `${linkName}-${data.id}` }).then(() =>
-          refetch()
-        );
+        updateProduct({
+          ...data,
+          ...product,
+          price: product.price ?? 0,
+          linkName: `${linkName}-${data.id}`,
+        }).then(() => refetch());
       }
     } else {
       setIsUploading(true);
       const imageUrl = await uploadImage(imageData)
         .then((res) => res.url)
         .finally(() => setIsUploading(false));
-      createProduct({ ...product, linkName, imageUrl }).then(() => refetch());
+      createProduct({ ...product, price: product.price ?? 0, linkName, imageUrl }).then(() =>
+        refetch()
+      );
     }
 
     modals.closeAll();
@@ -183,12 +190,7 @@ export const ModalProductContent = ({ data, refetch }: TModalProductContentProps
             </Grid.Col>
             <Grid.Col span={{ base: 6, sm: 3 }}>
               <Input.Wrapper label="Цена" withAsterisk>
-                <Input
-                  placeholder="Цена"
-                  type="number"
-                  step={0.01}
-                  {...register('price', { required: true })}
-                />
+                <Input placeholder="Цена" type="number" step={0.01} {...register('price')} />
               </Input.Wrapper>
             </Grid.Col>
             <Grid.Col span={{ base: 6, sm: 3 }}>
